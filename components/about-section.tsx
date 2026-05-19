@@ -35,7 +35,7 @@ export function AboutSection() {
     },
     {
       title: "Eventos Especiales",
-      description: "Bautizos, graduaciones y más celebraciones"
+      description: "Cenas, comidas y todo tipo de celebraciones"
     }
   ]
 
