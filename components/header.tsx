@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
@@ -26,30 +27,22 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-transparent py-5"
+          ? "bg-background/95 backdrop-blur-md shadow-lg py-2"
+          : "bg-gradient-to-b from-black/50 to-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="#inicio" className="flex items-center gap-3 group">
-          {/* Geometric Logo inspired by the hacienda's logo */}
-          <div className="relative">
-            <svg 
-              className={`w-12 h-12 transition-all duration-300 ${
-                isScrolled ? "text-primary" : "text-white"
+          <div className={`relative transition-all duration-300 ${isScrolled ? "w-12 h-12" : "w-14 h-14"}`}>
+            <Image
+              src="/images/logo.png"
+              alt="Hacienda La Joya"
+              fill
+              className={`object-contain transition-all duration-300 ${
+                isScrolled ? "brightness-100" : "brightness-0 invert"
               }`}
-              viewBox="0 0 60 60" 
-              fill="none"
-            >
-              <rect x="15" y="15" width="30" height="30" stroke="currentColor" strokeWidth="1.5" transform="rotate(45 30 30)" />
-              <rect x="20" y="20" width="20" height="20" stroke="currentColor" strokeWidth="1" transform="rotate(45 30 30)" />
-              <circle cx="30" cy="30" r="4" fill="currentColor" />
-              <line x1="30" y1="5" x2="30" y2="15" stroke="currentColor" strokeWidth="1" />
-              <line x1="30" y1="45" x2="30" y2="55" stroke="currentColor" strokeWidth="1" />
-              <line x1="5" y1="30" x2="15" y2="30" stroke="currentColor" strokeWidth="1" />
-              <line x1="45" y1="30" x2="55" y2="30" stroke="currentColor" strokeWidth="1" />
-            </svg>
+            />
           </div>
           <div className={`transition-colors duration-300 ${isScrolled ? "text-foreground" : "text-white"}`}>
             <h1 className="font-serif text-lg md:text-xl tracking-wide">Hacienda La Joya</h1>
@@ -63,8 +56,10 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-60 ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-60 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-px after:transition-all after:duration-300 hover:after:w-full ${
+                isScrolled 
+                  ? "text-foreground after:bg-primary" 
+                  : "text-white after:bg-white"
               }`}
             >
               {link.label}

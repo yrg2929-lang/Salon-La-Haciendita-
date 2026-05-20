@@ -12,25 +12,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #faf7f2;
-  --foreground: #2c2420;
+  --background: #faf8f5;
+  --foreground: #2a2522;
   --card: #ffffff;
-  --card-foreground: #2c2420;
+  --card-foreground: #2a2522;
   --popover: #ffffff;
-  --popover-foreground: #2c2420;
-  --primary: #8b3a3a;
-  --primary-foreground: #faf7f2;
-  --secondary: #c9a87c;
-  --secondary-foreground: #2c2420;
-  --muted: #f0ebe3;
-  --muted-foreground: #6b5d54;
+  --popover-foreground: #2a2522;
+  --primary: #9c4a3d;
+  --primary-foreground: #faf8f5;
+  --secondary: #c9a66b;
+  --secondary-foreground: #2a2522;
+  --muted: #f3efe8;
+  --muted-foreground: #6b5e54;
   --accent: #b85c38;
-  --accent-foreground: #faf7f2;
+  --accent-foreground: #faf8f5;
   --destructive: #dc2626;
-  --border: #d4c8b8;
-  --input: #f5f0e8;
-  --ring: #8b3a3a;
-  --radius: 0.25rem;
+  --border: #e5ddd2;
+  --input: #f5f1ea;
+  --ring: #9c4a3d;
+  --radius: 0rem;
 }
 
 @theme inline {
@@ -71,7 +71,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -79,13 +79,22 @@
 }
 
 ::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
-  border-radius: 3px;
 }
 
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
 }
 
 /* Animation keyframes */
@@ -129,7 +138,12 @@ html {
 
 @keyframes gentlePulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .animate-fade-in-up {
@@ -149,7 +163,13 @@ html {
 }
 
 .animate-gentle-pulse {
-  animation: gentlePulse 3s ease-in-out infinite;
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
 }
 
 /* Animation delays */
@@ -198,4 +218,24 @@ html {
 /* Text shadow for hero */
 .text-shadow-lg {
   text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Elegant underline animation */
+.elegant-underline {
+  position: relative;
+}
+
+.elegant-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.elegant-underline:hover::after {
+  width: 100%;
 }

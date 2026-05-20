@@ -1,50 +1,70 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import Image from "next/image"
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect()
+        setMousePosition({
+          x: (e.clientX - rect.left) / rect.width,
+          y: (e.clientY - rect.top) / rect.height,
+        })
+      }
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
   return (
     <section
+      ref={heroRef}
       id="inicio"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
+      {/* Background Image with subtle parallax */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out"
         style={{
           backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-l7HcmaZ7gpjBwXcjgR8t48MmtOyRU9.png')`,
+          transform: `scale(1.05) translate(${mousePosition.x * -10}px, ${mousePosition.y * -10}px)`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
       </div>
+
+      {/* Decorative corner elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 border-l border-t border-white/20 hidden lg:block" />
+      <div className="absolute top-20 right-10 w-32 h-32 border-r border-t border-white/20 hidden lg:block" />
+      <div className="absolute bottom-20 left-10 w-32 h-32 border-l border-b border-white/20 hidden lg:block" />
+      <div className="absolute bottom-20 right-10 w-32 h-32 border-r border-b border-white/20 hidden lg:block" />
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
-        {/* Decorative Logo */}
+        {/* Logo Image */}
         <div
           className={`flex justify-center mb-8 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
           }`}
         >
-          <svg 
-            className="w-20 h-20 text-white/90"
-            viewBox="0 0 60 60" 
-            fill="none"
-          >
-            <rect x="15" y="15" width="30" height="30" stroke="currentColor" strokeWidth="1" transform="rotate(45 30 30)" />
-            <rect x="20" y="20" width="20" height="20" stroke="currentColor" strokeWidth="0.75" transform="rotate(45 30 30)" />
-            <circle cx="30" cy="30" r="3" fill="currentColor" />
-            <line x1="30" y1="5" x2="30" y2="12" stroke="currentColor" strokeWidth="0.75" />
-            <line x1="30" y1="48" x2="30" y2="55" stroke="currentColor" strokeWidth="0.75" />
-            <line x1="5" y1="30" x2="12" y2="30" stroke="currentColor" strokeWidth="0.75" />
-            <line x1="48" y1="30" x2="55" y2="30" stroke="currentColor" strokeWidth="0.75" />
-          </svg>
+          <div className="relative w-24 h-24 md:w-32 md:h-32">
+            <Image
+              src="/images/logo.png"
+              alt="Hacienda La Joya Logo"
+              fill
+              className="object-contain brightness-0 invert opacity-90"
+            />
+          </div>
         </div>
 
         {/* Main Title */}
@@ -52,14 +72,14 @@ export function HeroSection() {
           className={`font-serif text-5xl md:text-7xl lg:text-8xl tracking-wider mb-4 transition-all duration-1000 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
-          style={{ textShadow: "0 4px 30px rgba(0,0,0,0.4)" }}
+          style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
         >
           Hacienda La Joya
         </h1>
 
         {/* Subtitle */}
         <p
-          className={`text-sm md:text-base tracking-[0.5em] uppercase mb-8 text-white/80 transition-all duration-1000 delay-300 ${
+          className={`text-sm md:text-base tracking-[0.5em] uppercase mb-10 text-white/80 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
@@ -68,38 +88,38 @@ export function HeroSection() {
 
         {/* Decorative line with year */}
         <div
-          className={`flex justify-center items-center gap-6 mb-10 transition-all duration-1000 delay-400 ${
+          className={`flex justify-center items-center gap-6 mb-12 transition-all duration-1000 delay-400 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="w-20 h-px bg-gradient-to-r from-transparent to-secondary/80" />
-          <span className="text-secondary text-xs tracking-[0.4em] font-light">DESDE 1600</span>
-          <div className="w-20 h-px bg-gradient-to-l from-transparent to-secondary/80" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-secondary to-transparent" />
+          <span className="text-secondary text-sm tracking-[0.4em] font-serif">DESDE 1600</span>
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-secondary to-transparent" />
         </div>
 
         {/* Tagline */}
         <p
-          className={`font-serif italic text-2xl md:text-3xl lg:text-4xl max-w-3xl mx-auto mb-12 leading-relaxed text-white/95 transition-all duration-1000 delay-500 ${
+          className={`font-serif italic text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto mb-14 leading-relaxed text-white/90 transition-all duration-1000 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          Una verdadera pieza histórica de León, Guanajuato
+          {'"'}Una verdadera pieza histórica de León, Guanajuato{'"'}
         </p>
 
         {/* CTA Buttons */}
         <div
-          className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-1000 delay-700 ${
+          className={`flex flex-col sm:flex-row gap-6 justify-center transition-all duration-1000 delay-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <a
             href="#historia"
-            className="group px-10 py-4 bg-transparent border border-white/40 text-white text-xs tracking-[0.25em] uppercase hover:bg-white/10 hover:border-white/60 transition-all duration-300"
+            className="group px-10 py-4 bg-transparent border-2 border-white/50 text-white text-xs tracking-[0.25em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300"
           >
             <span className="flex items-center justify-center gap-3">
-              Conocer Más
-              <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              Descubrir Historia
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </span>
           </a>
@@ -107,7 +127,7 @@ export function HeroSection() {
             href="https://wa.me/524772914712"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-10 py-4 bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs tracking-[0.25em] uppercase hover:bg-primary transition-all duration-300"
+            className="px-10 py-4 bg-primary text-primary-foreground text-xs tracking-[0.25em] uppercase hover:bg-primary/90 transition-all duration-300 shadow-lg"
           >
             Agendar Visita
           </a>
@@ -115,9 +135,10 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-        <span className="text-white/40 text-[10px] tracking-[0.4em] uppercase">Explorar</span>
-        <div className="w-px h-14 bg-gradient-to-b from-white/50 to-transparent animate-pulse" />
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-gentle-pulse">
+        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 bg-white/60 rounded-full animate-bounce" />
+        </div>
       </div>
     </section>
   )

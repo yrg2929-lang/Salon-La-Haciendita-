@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -9,17 +10,16 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-4 mb-6">
               {/* Logo */}
-              <svg 
-                className="w-12 h-12 text-secondary"
-                viewBox="0 0 60 60" 
-                fill="none"
-              >
-                <rect x="15" y="15" width="30" height="30" stroke="currentColor" strokeWidth="1" transform="rotate(45 30 30)" />
-                <rect x="20" y="20" width="20" height="20" stroke="currentColor" strokeWidth="0.75" transform="rotate(45 30 30)" />
-                <circle cx="30" cy="30" r="3" fill="currentColor" />
-              </svg>
+              <div className="relative w-16 h-16">
+                <Image
+                  src="/images/logo.png"
+                  alt="Hacienda La Joya"
+                  fill
+                  className="object-contain brightness-0 invert opacity-80"
+                />
+              </div>
               <div>
                 <h3 className="font-serif text-2xl text-background">Hacienda La Joya</h3>
                 <p className="text-xs tracking-[0.3em] uppercase text-background/50">Casa de Eventos</p>
@@ -29,23 +29,29 @@ export function Footer() {
               Una verdadera pieza histórica de León, Guanajuato del año 1600. 
               El esplendor del lugar se mantiene intacto para sus eventos más especiales.
             </p>
-            <p className="text-xs tracking-[0.2em] uppercase text-secondary">Desde 1600</p>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-secondary" />
+              <p className="text-xs tracking-[0.2em] uppercase text-secondary">Desde 1600</p>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg text-background mb-6">Navegación</h4>
+            <h4 className="font-serif text-lg text-background mb-6 flex items-center gap-3">
+              <span className="w-6 h-px bg-secondary" />
+              Navegación
+            </h4>
             <nav className="flex flex-col gap-3">
-              <Link href="#inicio" className="text-background/60 hover:text-secondary text-sm transition-colors">
+              <Link href="#inicio" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Inicio
               </Link>
-              <Link href="#historia" className="text-background/60 hover:text-secondary text-sm transition-colors">
+              <Link href="#historia" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Historia
               </Link>
-              <Link href="#espacios" className="text-background/60 hover:text-secondary text-sm transition-colors">
+              <Link href="#espacios" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Espacios
               </Link>
-              <Link href="#contacto" className="text-background/60 hover:text-secondary text-sm transition-colors">
+              <Link href="#contacto" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Contacto
               </Link>
             </nav>
@@ -53,7 +59,10 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-serif text-lg text-background mb-6">Contacto</h4>
+            <h4 className="font-serif text-lg text-background mb-6 flex items-center gap-3">
+              <span className="w-6 h-px bg-secondary" />
+              Contacto
+            </h4>
             <div className="space-y-4 text-sm text-background/60">
               <p className="leading-relaxed">
                 Blvd Aristóteles 1961<br />
@@ -74,7 +83,7 @@ export function Footer() {
                 href="https://wa.me/524772914712"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary transition-all"
+                className="w-11 h-11 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary hover:scale-110 transition-all duration-300"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -85,7 +94,7 @@ export function Footer() {
                 href="https://www.facebook.com/exhaciendalajoya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary transition-all"
+                className="w-11 h-11 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary hover:scale-110 transition-all duration-300"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -99,10 +108,10 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-background/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-background/40 text-sm">
-            © {currentYear} Ex-Hacienda La Joya. Todos los derechos reservados.
+            {currentYear} Ex-Hacienda La Joya. Todos los derechos reservados.
           </p>
           <p className="text-background/40 text-xs tracking-wider">
-            León, Guanajuato, México
+            Leon, Guanajuato, Mexico
           </p>
         </div>
       </div>
