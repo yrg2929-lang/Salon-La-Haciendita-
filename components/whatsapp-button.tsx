@@ -3,14 +3,14 @@
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/524776479502?text=Hola,%20me%20gustaría%20información%20sobre%20sus%20servicios"
+      href="https://wa.me/524772914712?text=Hola,%20me%20gustaría%20información%20sobre%20Hacienda%20La%20Joya"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-40 group"
       aria-label="Contactar por WhatsApp"
     >
       {/* Pulse effect */}
-      <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-25" />
+      <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" />
       
       {/* Button */}
       <span className="relative flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110">
@@ -20,8 +20,8 @@ export function WhatsAppButton() {
       </span>
 
       {/* Tooltip */}
-      <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-foreground text-background px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        ¿Necesitas ayuda?
+      <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-foreground text-background px-4 py-2 text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        ¿Te ayudamos?
         <span className="absolute left-full top-1/2 -translate-y-1/2 border-8 border-transparent border-l-foreground" />
       </span>
     </a>

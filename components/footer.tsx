@@ -5,44 +5,53 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-foreground text-background py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+    <footer className="bg-foreground text-background py-20">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/408286313_860976749054289_6104217929239417335_n-lgQZRVZnsdr0tt9tjQkJNZodzm2y14.jpg"
-                alt="La Haciendita Logo"
-                width={50}
-                height={50}
-                className="rounded-full bg-white p-1"
-              />
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-4 mb-6">
+              {/* Logo */}
+              <div className="relative w-16 h-16">
+                <Image
+                  src="/images/logo.png"
+                  alt="Hacienda La Joya"
+                  fill
+                  className="object-contain brightness-0 invert opacity-80"
+                />
+              </div>
               <div>
-                <h3 className="font-serif text-xl">La Haciendita</h3>
-                <p className="text-xs tracking-wider text-background/60">Salón de Eventos</p>
+                <h3 className="font-serif text-2xl text-background">Hacienda La Joya</h3>
+                <p className="text-xs tracking-[0.3em] uppercase text-background/50">Casa de Eventos</p>
               </div>
             </div>
-            <p className="text-background/70 text-sm leading-relaxed">
-              Tu evento soñado hecho realidad en León, Guanajuato. 
-              Elegancia rústica para bodas, XV años y eventos especiales.
+            <p className="text-background/60 leading-relaxed max-w-md mb-6">
+              Una verdadera pieza histórica de León, Guanajuato del año 1600. 
+              El esplendor del lugar se mantiene intacto para sus eventos más especiales.
             </p>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-secondary" />
+              <p className="text-xs tracking-[0.2em] uppercase text-secondary">Desde 1600</p>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg mb-4">Enlaces</h4>
-            <nav className="flex flex-col gap-2">
-              <Link href="#inicio" className="text-background/70 hover:text-primary text-sm transition-colors">
+            <h4 className="font-serif text-lg text-background mb-6 flex items-center gap-3">
+              <span className="w-6 h-px bg-secondary" />
+              Navegación
+            </h4>
+            <nav className="flex flex-col gap-3">
+              <Link href="#inicio" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Inicio
               </Link>
-              <Link href="#nosotros" className="text-background/70 hover:text-primary text-sm transition-colors">
-                Nosotros
+              <Link href="#historia" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
+                Historia
               </Link>
-              <Link href="#galeria" className="text-background/70 hover:text-primary text-sm transition-colors">
-                Galería
+              <Link href="#espacios" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
+                Espacios
               </Link>
-              <Link href="#contacto" className="text-background/70 hover:text-primary text-sm transition-colors">
+              <Link href="#contacto" className="text-background/60 hover:text-secondary text-sm transition-colors hover:translate-x-1 duration-200 inline-block">
                 Contacto
               </Link>
             </nav>
@@ -50,21 +59,31 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-serif text-lg mb-4">Contacto</h4>
-            <div className="space-y-3 text-sm text-background/70">
-              <p>León, Guanajuato, México</p>
-              <a href="tel:+524776479502" className="block hover:text-primary transition-colors">
-                477 647 9502
+            <h4 className="font-serif text-lg text-background mb-6 flex items-center gap-3">
+              <span className="w-6 h-px bg-secondary" />
+              Contacto
+            </h4>
+            <div className="space-y-4 text-sm text-background/60">
+              <p className="leading-relaxed">
+                Blvd Aristóteles 1961<br />
+                Ejido La Joya, CP 37178<br />
+                León, Guanajuato
+              </p>
+              <a href="tel:+524772914712" className="block hover:text-secondary transition-colors">
+                477 291 4712
+              </a>
+              <a href="mailto:exhaciendalajoya@outlook.es" className="block hover:text-secondary transition-colors break-all">
+                exhaciendalajoya@outlook.es
               </a>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-4 mt-6">
               <a
-                href="https://wa.me/524776479502"
+                href="https://wa.me/524772914712"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center border border-background/20 rounded-full hover:border-primary hover:text-primary transition-all"
+                className="w-11 h-11 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary hover:scale-110 transition-all duration-300"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -72,10 +91,10 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/p/Sal%C3%B3n-La-Haciendita-100054259161347/"
+                href="https://www.facebook.com/exhaciendalajoya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center border border-background/20 rounded-full hover:border-primary hover:text-primary transition-all"
+                className="w-11 h-11 flex items-center justify-center border border-background/20 hover:border-secondary hover:text-secondary hover:scale-110 transition-all duration-300"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -87,9 +106,12 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-background/10 pt-8">
-          <p className="text-center text-background/50 text-sm">
-            © {currentYear} La Haciendita - Salón de Eventos. Todos los derechos reservados.
+        <div className="border-t border-background/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-background/40 text-sm">
+            {currentYear} Ex-Hacienda La Joya. Todos los derechos reservados.
+          </p>
+          <p className="text-background/40 text-xs tracking-wider">
+            Leon, Guanajuato, Mexico
           </p>
         </div>
       </div>
